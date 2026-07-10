@@ -7,8 +7,17 @@ def home(request):
     return render(request,'home.html')
 
 def book_list(request):
-    books = Book.objects.all()      #this is a new and important concept, the Django ORM (Object-Relational Mapper)
-    return render(request,'book_list.html', {'books':books})
+    query = request.GET.get('q')
+    books = Book.objects.all()  #this is a new and important concept, the Django ORM (Object-Relational Mapper)
+
+    if query:
+        books = books.filter(
+            title__icontains=query
+        ) | books.filter(
+            author__name__icontains=query
+        )
+
+    return render(request, 'book_list.html', {'books': books, 'query': query})
 
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
