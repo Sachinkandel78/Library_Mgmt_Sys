@@ -83,4 +83,8 @@ Screenshots/                # App screenshots
 [Author List](Screenshots/Author_list.png)
 
 ### Author Detail
+<<<<<<< HEAD
 [Author Detail](Screenshots/Author_Detail.png)
+=======
+[Author Detail](Screenshots/Author_Detail.png)
+>>>>>>> 12ecbd25d3ac1e10b9c683d91c7bf1d288076530
