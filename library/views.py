@@ -76,10 +76,37 @@ def book_return(request, pk):
     return render(request, 'book_detail.html')
 
 def author_add(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        date_of_birth = request.POST.get('date_of_birth') or None
+        bio = request.POST.get('bio')
+
+        Author.objects.create(
+            name=name,
+            date_of_birth=date_of_birth,
+            bio=bio,
+        )
+        return redirect('author_list')
+    
     return render(request, 'author_form.html')
 
 def author_edit(request, pk):
-    return render(request, 'author_form.html')
+    author = get_object_or_404(Author, pk=pk)
+
+    if request.method == 'POST':
+        author.name = request.POST.get('name')
+        author.date_of_birth = request.POST.get('date_of_birth') or None
+        author.bio = request.POST.get('bio')
+        author.save()
+        return redirect('author_detail', pk=author.pk)
+    
+    return render(request, 'author_form.html', {'author': author})
 
 def author_delete(request, pk):
-    return render(request, 'author_confirm_delete.html')
+    author = get_object_or_404(Author, pk=pk)
+
+    if request.method == 'POST':
+        author.delete()
+        return redirect('author_list')
+    
+    return render(request, 'author_confirm_delete.html', {'author': author})
