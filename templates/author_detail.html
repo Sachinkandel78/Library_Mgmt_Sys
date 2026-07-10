@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ author.name }}</h1>
+    <p><strong>Bio:</strong> {{ author.bio|default:"No bio available." }}</p>
+    <p><strong>Date of Birth:</strong> {{ author.date_of_birth|default:"Unknown" }}</p>
+
+    <a href="{% url 'author_edit' author.pk %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'author_delete' author.pk %}" class="btn btn-danger">Delete</a>
+
+    <h3 class="mt-4">Books by this Author</h3>
+    <ul class="list-group">
+        {% for book in books %}
+        <li class="list-group-item">
+            <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
+            {% if book.is_available %}
+                <span class="badge bg-success">Available</span>
+            {% else %}
+                <span class="badge bg-danger">Not Available</span>
+            {% endif %}
+        </li>
+        {% empty %}
+        <li class="list-group-item">No books by this author yet.</li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <a href="{% url 'author_list' %}">← Back to Author List</a>
+{% endblock %}
