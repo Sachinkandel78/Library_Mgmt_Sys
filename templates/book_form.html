@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{% if book %}Edit Book{% else %}Add New Book{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Title:</label>
+            <input type="text" name="title" class="form-control" value="{% if book %}{{ book.title }}{% endif %}" required>
+        </div>
+        <div class="mb-3">
+            <label>Author:</label>
+            <select name="author" class="form-control" required>
+                <option value="">-- Select Author --</option>
+                {% for a in authors %}
+                    <option value="{{ a.pk }}" {% if book and book.author.pk == a.pk %}selected{% endif %}>{{ a.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>ISBN:</label>
+            <input type="text" name="isbn" class="form-control" value="{% if book %}{{ book.isbn }}{% endif %}" maxlength="13" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Published Date:</label>
+            <input type="date" name="published_date" class="form-control" value="{% if book %}{{ book.published_date|date:'Y-m-d' }}{% endif %}" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Total Copies:</label>
+            <input type="number" name="copies_total" class="form-control" value="{% if book %}{{ book.copies_total }}{% else %}1{% endif %}" min="0" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Copies Available:</label>
+            <input type="number" name="copies_available" class="form-control" value="{% if book %}{{ book.copies_available }}{% else %}1{% endif %}" min="0" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'book_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}
