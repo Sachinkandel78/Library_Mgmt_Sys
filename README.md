@@ -23,7 +23,7 @@ A Django-based web application for managing library books and authors, including
 1. Clone or download this repository, then navigate into the project folder: cd Library_Mgmt_sys
 2. Create and activate a virtual environment:
    -> python -m venv .venv
-   -> venv\Scripts\activate      # Windows
+   -> .venv\Scripts\activate      # Windows
    -> source .venv/bin/activate   # Mac/Linux
 3. Install dependencies:pip install -r requirements.txt
 4. Apply database migrations: python manage.py migrate  (makemigrations chai models.py ma kam garesi garni)
@@ -66,3 +66,21 @@ Screenshots/                # App screenshots
    ├── Book_list.png
    ├── Delete_Author.png
    └── Home_Page.png
+
+### Home Page
+[Home Page](Screenshots/Home_Page.png)
+
+### Book List
+[Book List](Screenshots/Book_list.png)
+
+### Book Detail
+[Book Detail](Screenshots/Book_detail.png)
+
+### Add Book
+[Add Book](Screenshots/Book_add.png)
+
+### Author List
+[Author List](Screenshots/Author_list.png)
+
+### Author Detail
+[Author Detail](Screenshots/Author_Detail.png)
