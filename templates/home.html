@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to the Library Management System</h1>
+    <p>Manage authors and books, and track borrowed/returned copies.</p>
+    <a href="{% url 'book_list' %}" class="btn btn-primary">View All Books</a>
+    <a href="{% url 'author_list' %}" class="btn btn-secondary">View All Authors</a>
+{% endblock %}

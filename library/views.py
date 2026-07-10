@@ -7,7 +7,7 @@ def home(request):
     return render(request,'home.html')
 
 def book_list(request):
-    books = Book.objects.all()
+    books = Book.objects.all()      #this is a new and important concept, the Django ORM (Object-Relational Mapper)
     return render(request,'book_list.html', {'books':books})
 
 def book_detail(request, pk):
@@ -20,6 +20,29 @@ def author_list(request):
 
 def author_detail(request, pk):
     author = get_object_or_404(Author, pk=pk)
-    books = author.book_set.all()
+    books = author.book_set.all()         
     return render(request, 'author_detail.html', {'author': author, 'books': books})
 
+def book_add(request):
+    return render(request, 'book_form.html')
+
+def book_edit(request, pk):
+    return render(request, 'book_form.html')
+
+def book_delete(request, pk):
+    return render(request, 'book_confirm_delete.html')
+
+def book_borrow(request, pk):
+    return render(request, 'book_detail.html')
+
+def book_return(request, pk):
+    return render(request, 'book_detail.html')
+
+def author_add(request):
+    return render(request, 'author_form.html')
+
+def author_edit(request, pk):
+    return render(request, 'author_form.html')
+
+def author_delete(request, pk):
+    return render(request, 'author_confirm_delete.html')
