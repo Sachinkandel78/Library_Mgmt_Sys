@@ -7,7 +7,7 @@ A Django-based web application for managing library books and authors, including
 - Add, view, edit, and delete Authors
 - Add, view, edit, and delete Books
 - Each Book is linked to an Author
-- Search books by title or author name
+- Search books by title or author name(bonus feature)
 - Borrow and Return functionality that updates copy availability in real time
 - Availability status (Available / Not Available) shown automatically based on copies available
 - Django Admin panel for quick data management
