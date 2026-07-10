@@ -70,10 +70,19 @@ def book_delete(request, pk):
     return render(request, 'book_confirm_delete.html', {'book': book})
 
 def book_borrow(request, pk):
-    return render(request, 'book_detail.html')
+    book = get_object_or_404(Book, pk=pk)
+    if book.copies_available > 0:
+        book.copies_available -= 1
+        book.save()
+    return redirect('book_detail', pk=book.pk)
+
 
 def book_return(request, pk):
-    return render(request, 'book_detail.html')
+    book = get_object_or_404(Book, pk=pk)
+    if book.copies_available < book.copies_total:
+        book.copies_available += 1
+        book.save()
+    return redirect('book_detail', pk=book.pk)
 
 def author_add(request):
     if request.method == 'POST':
